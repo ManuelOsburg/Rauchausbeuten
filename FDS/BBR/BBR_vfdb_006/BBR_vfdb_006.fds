@@ -1,0 +1,825 @@
+&HEAD CHID='BBR_vfdb_006', TITLE='Mustergebaeude zum Brandschutzleitfaden des Bundes - vfdb 06'/
+
+&TIME   T_BEGIN = 0.0,
+        T_END   = 900.0/
+
+&DUMP   DT_HRR = 10.0,
+        DT_SLCF= 10.0,
+        DT_DEVC= 30.0,
+        DT_CTRL=  1.0,
+        DT_PART= 30.0 /
+
+&VENT   MB ='XMIN', SURF_ID='OPEN' /
+&VENT   MB ='XMAX', SURF_ID='OPEN' /
+&VENT   MB ='YMIN', SURF_ID='OPEN' /
+&VENT   MB ='YMAX', SURF_ID='OPEN' /
+&VENT   MB ='ZMIN', SURF_ID='OPEN' /
+&VENT   MB ='ZMAX', SURF_ID='OPEN' /
+
+
+&MESH ID='MESH_01', IJK=200,180,70, XB=-2.0,38.0,-2.0,34.0,-0.4,13.6/
+MESH ID='MESH_02', IJK= 16,180, 8, XB=17.2,20.4,-2.0,34.0,-2.0,-0.4/
+
+&MATL ID='Normalbeton',
+      SPECIFIC_HEAT=0.986,
+      CONDUCTIVITY=2.1,
+      DENSITY=2300.0/
+&MATL ID='Glas',
+      SPECIFIC_HEAT=0.75,
+      CONDUCTIVITY=1.0,
+      DENSITY=2500.0/
+&MATL ID='Holz',
+      SPECIFIC_HEAT=1.5,
+      CONDUCTIVITY=0.14,
+      DENSITY=600.0/
+&MATL ID='Stahl',
+      SPECIFIC_HEAT=0.45,
+      CONDUCTIVITY=50.0,
+      DENSITY=7800.0/
+&MATL ID='GFK-Fs-Tafel',
+      SPECIFIC_HEAT=1.7,
+      CONDUCTIVITY=0.2,
+      DENSITY=945.0/
+
+&SURF ID='Wand',
+      COLOR='GRAY',
+      MATL_ID(1,1)='Normalbeton',
+      MATL_MASS_FRACTION(1,1)=1.0,
+      THICKNESS(1)=0.35/
+&SURF ID='Fassadenglas',
+      RGB=0,0,255,
+      TRANSPARENCY=0.298039,
+      MATL_ID(1,1)='Glas',
+      MATL_MASS_FRACTION(1,1)=1.0,
+      THICKNESS(1)=0.04/
+&SURF ID='VSG',
+      RGB=0,0,128,
+      TRANSPARENCY=0.298039,
+      MATL_ID(1,1)='Glas',
+      MATL_MASS_FRACTION(1,1)=1.0,
+      THICKNESS(1)=0.04/
+&SURF ID='Tuer',
+      RGB=255,128,0,
+      TRANSPARENCY=0.298039,
+      MATL_ID(1,1)='Holz',
+      MATL_MASS_FRACTION(1,1)=1.0,
+      THICKNESS(1)=0.04/
+&SURF ID='Aussenwand',
+      RGB=80,80,80,
+      MATL_ID(1,1)='Normalbeton',
+      MATL_MASS_FRACTION(1,1)=1.0,
+      THICKNESS(1)=0.25/
+&SURF ID='Geschossdecke',
+      RGB=80,80,80,
+      MATL_ID(1,1)='Normalbeton',
+      MATL_MASS_FRACTION(1,1)=1.0,
+      THICKNESS(1)=0.4/
+&SURF ID='Dach',
+      RGB=80,80,80,
+      MATL_ID(1,1)='Normalbeton',
+      MATL_MASS_FRACTION(1,1)=1.0,
+      THICKNESS(1)=0.3/
+&SURF ID='Stahltraeger',
+      COLOR='SILVER',
+      MATL_ID(1,1)='Stahl',
+      MATL_MASS_FRACTION(1,1)=1.0,
+      THICKNESS(1)=8.0E-3/
+&SURF ID='GFKWand',
+      COLOR='WHITE',
+      MATL_ID(1,1)='GFK-Fs-Tafel',
+      MATL_MASS_FRACTION(1,1)=1.0,
+      THICKNESS(1)=0.1/
+&SURF ID='F30Wand',
+      COLOR='YELLOW',
+      MATL_ID(1,1)='GFK-Fs-Tafel',
+      MATL_MASS_FRACTION(1,1)=1.0,
+      THICKNESS(1)=0.1/
+&SURF ID='Brandwand',
+      COLOR='RED',
+      MATL_ID(1,1)='Normalbeton',
+      MATL_MASS_FRACTION(1,1)=1.0,
+      THICKNESS(1)=0.25/
+
+&REAC   FUEL    ='Polystyrol', 
+        FORMULA ="C8.0H7.90O0.97N0.0", 
+        HEAT_OF_COMBUSTION  =20700, 
+        SOOT_YIELD  =0.330, 
+        CO_YIELD    =0.137, 
+        HCN_YIELD   =0.0 /
+
+&SURF ID    ='BURNER',
+      HRRPUA    = 935.00,
+      COLOR = 'RED', 
+      RAMP_Q  ='fire-ramp' /
+
+&RAMP ID='fire-ramp', T=   0.00, F=0.00000 /
+&RAMP ID='fire-ramp', T= 300.00, F=0.08449 /
+&RAMP ID='fire-ramp', T= 600.00, F=0.08984 /
+&RAMP ID='fire-ramp', T= 900.00, F=0.09519 /
+&RAMP ID='fire-ramp', T=1200.00, F=0.10481 /
+&RAMP ID='fire-ramp', T=1500.00, F=0.15080 /
+&RAMP ID='fire-ramp', T=1800.00, F=0.57112 /
+&RAMP ID='fire-ramp', T=2100.00, F=1.02139 /
+&RAMP ID='fire-ramp', T=2250.00, F=1.18717 /
+&RAMP ID='fire-ramp', T=2400.00, F=1.02567 /
+&RAMP ID='fire-ramp', T=2700.00, F=0.74652 /
+&RAMP ID='fire-ramp', T=3000.00, F=0.58075 /
+&RAMP ID='fire-ramp', T=3300.00, F=0.13690 /
+&RAMP ID='fire-ramp', T=3600.00, F=0.05882 /
+
+&OBST XB= 15.4,16.4,24.0,25.0, 0.0, 0.2, SURF_ID6='INERT','INERT','INERT','INERT','INERT','BURNER' /
+
+&OBST ID='E00_T01', XB=30.8,32.8,23.0,23.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T02', XB=26.4,26.6,16.2,18.2,0.0,2.2, SURF_ID='Tuer', DEVC_ID='timer_true'/ 
+&OBST ID='E00_T03', XB=26.0,27.0,11.0,11.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T04', XB=18.2,19.8,11.0,11.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T05', XB=13.0,14.0,11.0,11.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T06', XB=7.2,7.4,11.6,12.8,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T07', XB=5.4,6.6,5.2,5.4,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T08', XB=7.2,7.4,21.4,22.6,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T09', XB=4.8,6.8,23.0,23.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T10', XB=2.6,4.6,23.0,23.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T11', XB=0.4,2.4,23.0,23.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T12', XB=11.6,12.6,23.0,23.2,0.0,2.2, SURF_ID='Tuer'/ 
+OBST ID='E00_T13', XB=15.2,16.2,23.0,23.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T14', XB=18.2,19.8,23.0,23.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T15', XB=18.8,20.0,30.4,30.6,-1.8,0.4, SURF_ID='Tuer'/ 
+&OBST ID='E00_T16', XB=14.4,14.6,9.6,10.8,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T17', XB=17.6,18.8,0.0,0.2,-0.8,1.4, SURF_ID='Tuer'/ 
+&OBST ID='E00_T18', XB=20.8,22.0,23.0,23.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T19', XB=23.8,24.8,23.0,23.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_T20', XB=26.0,27.0,23.0,23.2,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E00_AZ', XB=15.0,16.8,9.2,9.4,0.0,2.2, SURF_ID='Tuer'/ 
+&OBST ID='E01_T01', XB=18.2,19.8,11.0,11.2,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T02', XB=14.4,14.6,9.6,10.8,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T03', XB=20.2,20.4,9.6,10.8,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T04', XB=18.2,19.8,23.0,23.2,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T05', XB=14.4,14.6,23.6,24.8,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T06', XB=20.2,20.4,23.6,24.8,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T07', XB=2.2,2.4,15.4,16.4,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T08', XB=2.2,2.4,17.8,18.8,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T09', XB=2.2,2.4,19.2,20.2,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T10', XB=3.4,4.2,15.2,15.4,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T11', XB=20.2,20.4,1.6,2.6,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_AZ', XB=15.0,16.8,9.2,9.4,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T12', XB=21.2,22.4,11.0,11.2,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T13', XB=9.0,10.2,11.0,11.2,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T14', XB=9.0,10.2,23.0,23.2,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T15', XB=25.6,26.8,23.0,23.2,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E01_T16', XB=29.2,29.4,16.0,17.2,3.4,5.6, SURF_ID='Tuer'/ 
+&OBST ID='E02_T01', XB=18.2,19.8,11.0,11.2,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T02', XB=14.4,14.6,9.6,10.8,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T03', XB=20.2,20.4,9.6,10.8,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T04', XB=18.2,19.8,23.0,23.2,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E03_T05', XB=14.4,14.6,23.6,24.8,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E03_T06', XB=20.2,20.4,23.6,24.8,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T07', XB=2.2,2.4,15.4,16.4,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T08', XB=2.2,2.4,17.8,18.8,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T09', XB=2.2,2.4,19.2,20.2,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T10', XB=3.4,4.2,15.2,15.4,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T11', XB=20.2,20.4,1.6,2.6,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_AZ', XB=15.0,16.8,9.2,9.4,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T12', XB=21.2,22.4,11.0,11.2,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T13', XB=9.0,10.2,11.0,11.2,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T14', XB=9.0,10.2,23.0,23.2,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T15', XB=25.6,26.8,23.0,23.2,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='E02_T16', XB=29.2,29.4,16.0,17.2,6.8,9.0, SURF_ID='Tuer'/ 
+&OBST ID='Eingangstuer_Glasbau', XB=26.4,26.6,16.2,18.2,2.2,2.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='Eingangstuer_Glasbau', XB=26.4,27.4,16.0,16.2,0.0,2.6, SURF_ID='Fassadenglas'/ 
+&OBST ID='Eingangstuer_Glasbau', XB=26.4,27.4,18.2,18.4,0.0,2.6, SURF_ID='Fassadenglas'/ 
+&OBST ID='Eingangstuer_Glasbau', XB=26.4,27.4,16.2,18.2,2.4,2.6, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=8.0,14.0,0.0,0.2,0.0,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=14.4,17.0,0.0,0.2,0.0,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=17.4,20.2,0.0,0.2,1.4,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=17.4,17.6,0.0,0.2,-0.8,1.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=17.2,20.4,9.0,9.2,-0.8,-0.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E00_Fassadenfenster', XB=20.6,27.0,0.0,0.2,0.0,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=27.4,27.6,11.2,16.2,0.0,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=27.4,27.6,18.2,23.0,0.0,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=27.4,27.6,16.2,18.2,2.4,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=27.4,36.2,30.4,30.6,0.0,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=20.6,27.0,30.4,30.6,0.0,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=20.0,20.2,30.4,30.6,-1.8,0.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=17.4,20.2,30.4,30.6,0.4,3.2, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=17.4,18.8,30.4,30.6,-1.8,0.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=14.4,17.0,30.4,30.6,0.0,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=7.8,14.0,30.4,30.6,0.0,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=0.0,0.2,5.4,23.0,0.0,3.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=18.8,20.2,0.0,0.2,-0.8,1.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Fassadenfenster', XB=17.2,20.4,25.6,25.8,-1.8,-0.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_Fassadenfenster', XB=27.4,36.4,30.4,30.6,3.4,6.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E01_Fassadenfenster', XB=20.6,27.0,30.4,30.6,3.4,6.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E01_Fassadenfenster', XB=17.4,20.2,30.4,30.6,3.2,6.6, SURF_ID='Fassadenglas'/ 
+&OBST ID='E01_Fassadenfenster', XB=14.4,17.0,30.4,30.6,3.4,6.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E01_Fassadenfenster', XB=0.2,14.0,30.4,30.6,3.4,6.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E01_Fassadenfenster', XB=0.0,0.2,11.2,23.0,3.4,6.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E01_Fassadenfenster', XB=0.2,14.0,0.0,0.2,3.4,6.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E01_Fassadenfenster', XB=14.4,17.0,0.0,0.2,3.4,6.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E01_Fassadenfenster', XB=17.4,20.2,0.0,0.2,3.4,6.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E01_Fassadenfenster', XB=20.6,27.0,0.0,0.2,3.4,6.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E01_Fassadenfenster', XB=27.4,36.4,0.0,0.2,3.4,6.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E01_Fassadenfenster', XB=36.4,36.6,7.0,23.0,3.4,6.4, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=27.4,36.4,0.0,0.2,6.8,9.8, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=20.6,27.0,0.0,0.2,6.8,9.8, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=17.4,20.2,0.0,0.2,6.8,9.8, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=14.4,17.0,0.0,0.2,6.8,9.8, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=0.2,14.0,0.0,0.2,6.8,9.8, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=0.0,0.2,11.2,23.0,6.8,10.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=0.2,14.0,30.4,30.6,6.8,9.8, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=14.4,17.0,30.4,30.6,6.8,9.8, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=17.4,20.2,30.4,30.6,6.6,9.8, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=20.6,27.0,30.4,30.6,6.8,9.8, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=27.4,36.4,30.4,30.6,6.8,9.8, SURF_ID='Fassadenglas'/ 
+&OBST ID='E02_Fassadenfenster', XB=36.4,36.6,7.0,23.0,6.8,9.8, SURF_ID='Fassadenglas'/ 
+&OBST ID='E00_Aussenwand', XB=27.0,27.4,0.0,0.4,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=27.4,28.0,0.0,11.0,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=14.0,14.4,0.0,0.4,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=0.0,8.0,0.0,0.4,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=0.0,0.4,0.4,5.4,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=0.2,0.4,11.0,11.2,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=0.2,0.4,17.0,17.2,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=0.0,0.4,23.0,23.2,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=0.4,2.4,23.0,23.2,2.2,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=2.6,4.6,23.0,23.2,2.2,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=2.4,2.6,23.0,23.2,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=4.6,4.8,23.0,23.2,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=4.8,6.8,23.0,23.2,2.2,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=6.8,7.8,23.0,23.4,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=6.8,7.2,23.4,30.2,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=6.8,7.8,30.2,30.6,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=14.0,14.4,30.2,30.6,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=17.0,17.2,30.2,30.6,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=20.4,20.6,30.2,30.6,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=27.0,27.4,30.2,30.6,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=36.2,36.6,23.0,30.6,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=36.4,36.6,0.0,7.0,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=27.4,28.0,11.0,11.2,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Aussenwand', XB=27.6,30.4,23.0,23.2,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=36.4,36.6,0.0,7.0,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=27.0,27.4,0.0,0.4,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=20.2,20.6,0.0,0.4,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=17.0,17.4,0.0,0.4,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=14.0,14.4,0.0,0.4,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=0.0,0.2,0.0,11.2,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=0.0,0.2,23.0,30.6,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=14.0,14.4,30.2,30.6,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=17.0,17.2,30.2,30.6,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=20.4,20.6,30.2,30.6,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=27.0,27.4,30.2,30.6,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E01_Aussenwand', XB=36.4,36.6,23.0,30.6,3.4,6.4, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=0.0,0.2,0.0,11.2,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=0.0,0.2,23.0,30.6,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=14.0,14.4,30.2,30.6,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=17.0,17.2,30.2,30.6,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=20.4,20.6,30.2,30.6,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=27.0,27.4,30.2,30.6,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=36.4,36.6,23.0,30.6,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=36.4,36.6,0.0,7.0,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=27.0,27.4,0.0,0.4,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=20.2,20.6,0.0,0.4,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=17.0,17.4,0.0,0.4,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E02_Aussenwand', XB=14.0,14.4,0.0,0.4,6.8,9.8, SURF_ID='Aussenwand'/ 
+&OBST ID='E00_Trennwand', XB=7.2,7.6,0.4,11.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=7.2,7.4,11.2,11.4,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=6.6,7.2,5.2,5.4,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=5.4,6.6,5.2,5.4,2.2,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=0.4,5.4,5.2,5.4,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=7.0,7.2,17.0,17.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=7.2,7.4,22.8,23.0,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=14.4,14.6,23.2,25.8,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=14.6,17.2,25.6,25.8,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=16.2,17.2,23.0,23.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=15.2,16.2,23.0,23.2,2.2,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=14.4,15.2,23.0,23.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=30.2,30.4,23.2,26.6,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=20.4,30.4,26.6,26.8,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=20.4,20.8,11.0,11.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=25.6,26.0,11.0,11.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=26.0,27.0,11.0,11.2,2.2,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=27.0,27.4,11.0,11.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=27.2,27.4,14.0,14.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=27.2,27.4,20.0,20.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=20.4,20.8,23.0,23.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=20.8,22.0,23.0,23.2,2.2,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=22.0,23.8,23.0,23.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=23.0,23.2,23.2,26.6,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=23.2,23.8,24.6,24.8,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=24.8,27.6,24.6,24.8,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=24.8,26.0,23.0,23.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=23.8,24.8,23.0,23.2,2.2,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=26.0,27.0,23.0,23.2,2.2,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=27.0,27.6,23.0,23.2,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=27.4,27.6,23.2,23.6,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=27.4,27.6,24.8,26.6,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_Trennwand', XB=25.4,25.6,23.2,24.6,0.0,3.0, SURF_ID='GFKWand'/ 
+&OBST ID='E00_VSG', XB=20.8,25.6,11.0,11.2,0.0,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=7.6,13.0,11.0,11.2,0.0,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=13.0,14.0,11.0,11.2,2.2,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=14.0,14.4,11.0,11.2,0.0,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=7.2,7.4,11.4,11.6,0.0,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=7.2,7.4,11.6,12.8,2.2,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=7.2,7.4,12.8,21.4,0.0,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=7.2,7.4,21.4,22.6,2.2,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=7.2,7.4,22.6,22.8,0.0,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=7.8,11.6,23.0,23.2,0.0,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=11.6,12.6,23.0,23.2,2.2,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=12.6,14.4,23.0,23.2,0.0,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=30.4,30.8,23.0,23.2,0.0,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=30.8,32.8,23.0,23.2,2.2,3.0, SURF_ID='VSG'/ 
+&OBST ID='E00_VSG', XB=32.8,36.2,23.0,23.2,0.0,3.0, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=22.4,29.4,11.0,11.2,3.4,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=21.2,22.4,11.0,11.2,5.6,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=20.4,21.2,11.0,11.2,3.4,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=10.2,14.4,11.0,11.2,3.4,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=9.0,10.2,11.0,11.2,5.6,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=0.2,9.0,11.0,11.2,3.4,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=0.2,9.0,23.0,23.2,3.4,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=9.0,10.2,23.0,23.2,5.6,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=10.2,14.4,23.0,23.2,3.4,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=20.4,25.6,23.0,23.2,3.4,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=25.6,26.8,23.0,23.2,5.6,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=26.8,29.2,23.0,23.2,3.4,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=29.2,29.4,17.2,23.2,3.4,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=29.2,29.4,16.0,17.2,5.6,6.4, SURF_ID='VSG'/ 
+&OBST ID='E01_VSG', XB=29.2,29.4,11.2,16.0,3.4,6.4, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=22.4,29.4,11.0,11.2,6.8,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=21.2,22.4,11.0,11.2,9.0,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=20.4,21.2,11.0,11.2,6.8,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=10.2,14.4,11.0,11.2,6.8,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=9.0,10.2,11.0,11.2,9.0,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=0.2,9.0,11.0,11.2,6.8,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=0.2,9.0,23.0,23.2,6.8,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=9.0,10.2,23.0,23.2,9.0,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=10.2,14.4,23.0,23.2,6.8,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=20.4,25.6,23.0,23.2,6.8,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=25.6,26.8,23.0,23.2,9.0,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=26.8,29.2,23.0,23.2,6.8,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=29.2,29.4,17.2,23.2,6.8,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=29.2,29.4,16.0,17.2,9.0,9.8, SURF_ID='VSG'/ 
+&OBST ID='E02_VSG', XB=29.2,29.4,11.2,16.0,6.8,9.8, SURF_ID='VSG'/ 
+&OBST ID='E01_Trennwand', XB=20.2,20.4,2.6,3.6,3.4,6.4, SURF_ID='F30Wand'/ 
+&OBST ID='E01_Trennwand', XB=20.2,20.4,1.6,2.6,5.6,6.4, SURF_ID='F30Wand'/ 
+&OBST ID='E01_Trennwand', XB=20.2,20.4,0.4,1.6,3.4,6.4, SURF_ID='F30Wand'/ 
+&OBST ID='E01_Trennwand', XB=17.2,17.4,0.4,3.6,3.4,6.4, SURF_ID='F30Wand'/ 
+&OBST ID='E01_Trennwand', XB=2.2,2.4,13.0,15.4,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=4.2,4.4,13.0,15.4,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=7.2,7.4,12.8,21.6,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=4.4,7.2,16.6,16.8,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=4.2,4.4,19.2,21.4,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=2.2,7.2,21.4,21.6,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=2.2,2.4,20.2,21.4,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=2.2,2.4,19.2,20.2,5.6,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=2.2,2.4,18.8,19.2,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=2.2,2.4,17.8,18.8,5.6,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=2.4,4.4,19.0,19.2,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=2.4,4.4,17.0,17.2,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=4.2,4.4,16.6,17.0,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=2.2,2.4,15.4,16.4,5.6,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=2.2,2.4,16.4,17.8,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=2.2,7.2,12.8,13.0,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=2.4,3.4,15.2,15.4,3.4,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Trennwand', XB=3.4,4.2,15.2,15.4,5.6,6.4, SURF_ID='GFKWand'/ 
+&OBST ID='E01_Atrium_Bruestung', XB=7.2,14.6,12.6,12.8,3.4,4.6, SURF_ID='VSG'/ 
+&OBST ID='E01_Atrium_Bruestung', XB=14.6,14.8,12.6,14.0,3.4,4.6, SURF_ID='VSG'/ 
+&OBST ID='E01_Atrium_Bruestung', XB=7.2,14.6,21.6,21.8,3.4,4.6, SURF_ID='VSG'/ 
+&OBST ID='E01_Atrium_Bruestung', XB=14.6,14.8,20.2,21.8,3.4,4.6, SURF_ID='VSG'/ 
+&OBST ID='E01_Atrium_Bruestung', XB=20.2,27.2,21.6,21.8,3.4,4.6, SURF_ID='VSG'/ 
+&OBST ID='E01_Atrium_Bruestung', XB=27.2,27.4,12.6,21.8,3.4,4.6, SURF_ID='VSG'/ 
+&OBST ID='E01_Atrium_Bruestung', XB=20.2,27.2,12.6,12.8,3.4,4.6, SURF_ID='VSG'/ 
+&OBST ID='E01_Atrium_Bruestung', XB=20.0,20.2,12.6,14.0,3.4,4.6, SURF_ID='VSG'/ 
+&OBST ID='E01_Atrium_Bruestung', XB=20.0,20.2,14.2,17.0,3.4,4.6, SURF_ID='VSG'/ 
+&OBST ID='E01_Atrium_Bruestung', XB=20.0,20.2,17.2,20.0,3.4,4.6, SURF_ID='VSG'/ 
+&OBST ID='E01_Atrium_Bruestung', XB=20.0,20.2,20.2,21.8,3.4,4.6, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=7.2,14.6,12.6,12.8,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=14.6,14.8,12.6,14.0,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=7.2,14.6,21.6,21.8,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=14.6,14.8,20.2,21.8,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=20.0,20.2,20.2,21.8,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=20.0,20.2,17.2,20.0,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=20.0,20.2,14.2,17.0,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=20.0,20.2,12.6,14.0,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=20.2,27.2,12.6,12.8,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=27.2,27.4,12.6,21.8,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=20.2,27.2,21.6,21.8,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Atrium_Bruestung', XB=14.6,14.8,17.2,20.0,6.8,8.0, SURF_ID='VSG'/ 
+&OBST ID='E02_Trennwand', XB=20.2,20.4,2.6,3.6,6.8,9.8, SURF_ID='F30Wand'/ 
+&OBST ID='E02_Trennwand', XB=20.2,20.4,1.6,2.6,9.0,9.8, SURF_ID='F30Wand'/ 
+&OBST ID='E02_Trennwand', XB=20.2,20.4,0.4,1.6,6.8,9.8, SURF_ID='F30Wand'/ 
+&OBST ID='E02_Trennwand', XB=17.2,17.4,0.4,3.6,6.8,9.8, SURF_ID='F30Wand'/ 
+&OBST ID='E02_Trennwand', XB=7.2,7.4,12.8,21.6,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.2,7.2,12.8,13.0,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=4.2,4.4,13.0,15.4,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=3.4,4.2,15.2,15.4,9.0,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.4,3.4,15.2,15.4,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.2,2.4,13.0,15.4,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.2,2.4,15.4,16.4,9.0,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.2,2.4,16.4,17.8,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.4,4.4,17.0,17.2,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=4.4,7.2,16.6,16.8,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=4.2,4.4,16.6,17.0,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=4.2,4.4,19.2,21.4,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.4,4.4,19.0,19.2,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.2,2.4,17.8,18.8,9.0,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.2,2.4,18.8,19.2,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.2,2.4,19.2,20.2,9.0,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.2,2.4,20.2,21.4,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.2,7.2,21.4,21.6,6.8,9.8, SURF_ID='GFKWand'/ 
+&OBST ID='E02_Trennwand', XB=2.2,7.4,12.8,21.6,9.8,10.0, SURF_ID='GFKWand'/ 
+&OBST ID='Aufzug', XB=14.8,17.2,7.8,8.0,0.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='Aufzug', XB=14.6,14.8,7.8,9.2,0.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='Aufzug', XB=17.0,17.2,8.0,8.8,0.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='Stuetzen', XB=19.8,20.2,20.0,20.2,0.0,8.0, SURF_ID='Wand'/ 
+&OBST ID='Stuetzen', XB=19.8,20.2,14.0,14.2,0.0,8.0, SURF_ID='Wand'/ 
+&OBST ID='Stuetzen', XB=19.8,20.2,17.0,17.2,0.0,8.0, SURF_ID='Wand'/ 
+&OBST ID='Stuetzen', XB=17.4,18.2,17.0,17.2,0.0,8.0, SURF_ID='Wand'/ 
+&OBST ID='Stuetzen', XB=17.4,18.2,14.0,14.2,0.0,8.0, SURF_ID='Wand'/ 
+&OBST ID='Stuetzen', XB=14.6,15.0,14.0,14.2,0.0,8.0, SURF_ID='Wand'/ 
+&OBST ID='Stuetzen', XB=14.6,15.0,17.0,17.2,0.0,8.0, SURF_ID='Wand'/ 
+&OBST ID='Stuetzen', XB=14.6,15.0,20.0,20.2,0.0,8.0, SURF_ID='Wand'/ 
+&OBST ID='Stuetzen', XB=17.4,18.2,20.0,20.2,0.0,8.0, SURF_ID='Wand'/ 
+&OBST ID='Sitzbank', XB=17.4,18.2,14.2,17.0,3.8,4.0, COLOR='KHAKI', SURF_ID='INERT'/ 
+&OBST ID='Sitzbank', XB=17.4,18.2,17.2,20.0,3.8,4.0, COLOR='KHAKI', SURF_ID='INERT'/ 
+&OBST ID='Sitzbank', XB=17.4,18.2,14.2,17.0,7.2,7.4, COLOR='KHAKI', SURF_ID='INERT'/ 
+&OBST ID='Sitzbank', XB=17.4,18.2,17.2,20.0,7.2,7.4, COLOR='KHAKI', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Konstruktion', XB=17.2,17.4,3.6,8.6,3.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=17.0,17.2,8.8,9.4,0.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=16.8,17.0,9.2,9.4,0.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=17.2,17.4,8.6,9.0,3.4,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=17.2,17.4,8.6,9.0,6.8,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=17.0,17.2,0.0,0.4,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=20.2,20.4,0.0,11.2,0.0,3.0, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=17.2,17.4,0.0,9.0,0.0,3.0, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=20.4,20.6,0.0,0.4,0.0,3.0, SURF_ID='Aussenwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=20.2,20.4,3.6,9.6,3.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=20.2,20.4,10.8,11.2,3.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=20.2,20.4,9.6,10.8,3.0,3.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=20.2,20.4,9.6,10.8,9.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=20.2,20.4,9.6,10.8,5.6,6.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=15.0,16.8,9.2,9.4,9.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=15.0,16.8,9.2,9.4,5.6,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=15.0,16.8,9.2,9.4,2.2,3.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=19.8,20.2,11.0,11.2,0.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=18.2,19.8,11.0,11.2,2.2,3.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=14.4,18.2,11.0,11.2,0.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=17.2,17.4,10.8,11.0,0.0,9.8, SURF_ID='Wand'/ 
+&OBST ID='TR_A_Konstruktion', XB=18.2,19.8,11.0,11.2,5.6,6.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=18.2,19.8,11.0,11.2,9.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=14.4,14.6,10.8,11.0,0.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=14.4,14.6,9.6,10.8,2.2,3.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=14.4,14.6,9.6,10.8,5.6,6.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=14.4,14.6,9.6,10.8,9.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=14.4,14.6,9.2,9.6,0.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=14.6,15.0,9.2,9.4,0.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=17.4,20.2,3.6,3.8,3.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_A_Konstruktion', XB=17.2,17.4,0.0,9.0,-0.8,-0.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='TR_A_Konstruktion', XB=20.2,20.4,0.0,9.0,-0.8,-0.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='TR_B_Konstruktion', XB=17.2,17.4,23.0,30.6,0.0,3.0, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=17.4,18.2,23.0,23.2,0.0,3.0, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=19.8,20.4,23.0,23.2,0.0,3.0, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=20.2,20.4,23.2,30.6,0.0,3.0, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=17.2,17.4,25.8,30.6,3.0,3.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=20.2,20.4,25.8,30.6,3.0,3.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=20.2,20.4,24.8,30.6,3.4,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=20.2,20.4,23.2,23.6,3.4,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=17.2,17.4,25.6,30.6,3.4,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.4,17.2,25.6,25.8,3.4,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.4,14.6,24.8,25.6,3.4,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.4,14.6,23.0,23.6,3.4,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.6,18.2,23.0,23.2,3.4,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=19.8,20.4,23.0,23.2,3.4,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=17.2,17.4,25.4,25.6,3.4,6.4, SURF_ID='Wand'/ 
+&OBST ID='TR_B_Konstruktion', XB=17.2,17.4,23.2,23.6,3.4,6.4, SURF_ID='Wand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.4,14.6,23.6,24.8,5.6,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=18.2,19.8,23.0,23.2,5.6,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=20.2,20.4,23.6,24.8,5.6,6.4, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=17.2,17.4,25.6,30.6,6.4,6.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=20.2,20.4,23.0,30.6,6.4,6.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.4,20.2,23.0,23.2,6.4,6.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.4,17.4,25.6,25.8,6.4,6.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.4,14.6,23.2,25.6,6.4,6.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=20.2,20.4,24.8,30.6,6.8,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=17.2,17.4,25.6,30.6,6.8,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.6,18.2,23.0,23.2,6.8,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=18.2,19.8,23.0,23.2,9.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=19.8,20.4,23.0,23.2,6.8,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.4,14.6,23.0,23.6,6.8,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=20.2,20.4,23.2,23.6,6.8,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=20.2,20.4,23.6,24.8,9.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=17.2,17.4,25.4,25.6,6.8,9.8, SURF_ID='Wand'/ 
+&OBST ID='TR_B_Konstruktion', XB=17.2,17.4,23.2,23.6,6.8,9.8, SURF_ID='Wand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.4,17.4,25.6,25.8,6.8,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.4,14.6,24.8,25.6,6.8,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=14.4,14.6,23.6,24.8,9.0,9.8, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=18.2,19.8,23.0,23.2,2.2,3.0, SURF_ID='Brandwand'/ 
+&OBST ID='TR_B_Konstruktion', XB=17.2,17.4,25.8,30.6,-1.8,-0.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='TR_B_Konstruktion', XB=20.2,20.4,25.8,30.6,-1.8,-0.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E00_FLOOR', XB=0.0,17.4,0.0,8.6,-0.4,0.0, SURF_ID='Geschossdecke'/ 
+&OBST ID='E00_FLOOR', XB=0.0,17.4,25.8,30.6,-0.4,0.0, SURF_ID='Geschossdecke'/ 
+&OBST ID='E00_FLOOR', XB=0.0,36.6,8.6,25.8,-0.4,0.0, SURF_ID='Geschossdecke'/ 
+&OBST ID='E00_FLOOR', XB=20.2,36.6,0.0,8.6,-0.4,0.0, SURF_ID='Geschossdecke'/ 
+&OBST ID='E00_FLOOR', XB=20.2,36.6,25.8,30.6,-0.4,0.0, SURF_ID='Geschossdecke'/ 
+&OBST ID='E00_FLOOR_TR_A', XB=17.2,20.4,-2.0,9.2,-2.0,-0.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E00_FLOOR_TR_B', XB=17.2,20.4,25.6,34.0,-2.0,-1.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E00_FLOOR_TR', XB=17.2,20.4,9.2,25.6,-2.0,-0.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=0.0,7.4,12.8,21.6,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=0.0,14.4,9.2,11.2,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=0.0,14.6,7.8,9.2,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=0.0,17.2,3.6,7.8,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=0.0,17.2,25.8,30.6,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=0.0,36.6,0.0,3.6,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=0.0,36.6,11.2,12.8,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=0.0,36.6,21.6,25.8,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=14.6,20.2,12.8,14.0,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=14.6,20.2,14.2,17.0,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=14.6,20.2,17.2,20.0,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=14.6,20.2,20.2,21.6,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=15.0,17.4,14.0,14.2,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=15.0,17.4,17.0,17.2,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=15.0,17.4,20.0,20.2,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=18.2,19.8,14.0,14.2,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=18.2,19.8,17.0,17.2,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=18.2,19.8,20.0,20.2,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=20.4,36.6,3.6,11.2,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=20.4,36.6,25.8,30.6,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=27.2,36.6,12.8,21.6,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=14.6,17.2,10.8,11.0,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=14.6,20.2,9.4,10.8,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=17.2,20.2,8.6,9.4,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E01_FLOOR', XB=17.4,20.2,10.8,11.0,3.0,3.4, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=0.0,7.4,12.8,21.6,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=0.0,14.4,9.2,11.2,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=0.0,14.4,23.0,25.8,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=0.0,14.6,7.8,9.2,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=0.0,17.2,3.6,7.8,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=0.0,17.2,25.8,30.6,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=0.0,36.6,0.0,3.6,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=0.0,36.6,11.2,12.8,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=0.0,36.6,21.6,23.0,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=14.6,20.2,12.8,14.0,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=14.6,20.2,14.2,17.0,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=14.6,20.2,17.2,20.0,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=14.6,20.2,20.2,21.6,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=15.0,17.4,14.0,14.2,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=15.0,17.4,17.0,17.2,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=15.0,17.4,20.0,20.2,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=18.2,19.8,14.0,14.2,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=18.2,19.8,17.0,17.2,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=18.2,19.8,20.0,20.2,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=20.4,36.6,3.6,11.2,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=20.4,36.6,23.0,30.6,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=27.2,36.6,12.8,21.6,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=14.6,20.2,23.2,25.6,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=17.4,20.2,25.6,25.8,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=14.6,17.2,10.8,11.0,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=14.6,20.2,9.4,10.8,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=17.2,20.2,8.6,9.4,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='E02_FLOOR', XB=17.4,20.2,10.8,11.0,6.4,6.8, SURF_ID='Geschossdecke'/ 
+&OBST ID='ROOF', XB=0.0,36.6,0.0,11.2,9.8,10.0, SURF_ID='Dach'/ 
+&OBST ID='ROOF', XB=0.0,36.6,23.0,30.6,9.8,10.0, SURF_ID='Dach'/ 
+&OBST ID='ROOF', XB=29.2,36.6,11.2,23.0,9.8,10.0, SURF_ID='Dach'/ 
+&OBST ID='TR_Atrium_Treppe', XB=14.2,14.6,17.2,20.0,0.0,0.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.8,14.2,17.2,20.0,0.2,0.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.4,13.8,17.2,20.0,0.4,0.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.0,13.4,17.2,20.0,0.6,0.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=12.6,13.0,17.2,20.0,0.8,1.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=12.2,12.6,17.2,20.0,1.0,1.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=11.8,12.2,17.2,20.0,1.2,1.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=11.4,11.8,17.2,20.0,1.4,1.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=9.6,11.4,14.2,20.0,1.4,1.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=11.4,11.8,14.2,17.0,1.6,1.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=11.8,12.2,14.2,17.0,1.8,2.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=12.2,12.6,14.2,17.0,2.0,2.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=12.6,13.0,14.2,17.0,2.2,2.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.0,13.4,14.2,17.0,2.4,2.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.4,13.8,14.2,17.0,2.6,2.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.8,14.2,14.2,17.0,2.8,3.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=14.2,14.6,14.2,17.0,3.0,3.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=14.2,14.6,17.2,20.0,3.4,3.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.8,14.2,17.2,20.0,3.6,3.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.4,13.8,17.2,20.0,3.8,4.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.0,13.4,17.2,20.0,4.0,4.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=12.6,13.0,17.2,20.0,4.2,4.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=12.2,12.6,17.2,20.0,4.4,4.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=11.8,12.2,17.2,20.0,4.6,4.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=11.4,11.8,17.2,20.0,4.8,5.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=9.6,11.4,14.2,20.0,4.8,5.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=11.4,11.8,14.2,17.0,5.0,5.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=11.8,12.2,14.2,17.0,5.2,5.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=12.2,12.6,14.2,17.0,5.4,5.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=12.6,13.0,14.2,17.0,5.6,5.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.0,13.4,14.2,17.0,5.8,6.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.4,13.8,14.2,17.0,6.0,6.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=13.8,14.2,14.2,17.0,6.2,6.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Treppe', XB=14.2,14.6,14.2,17.0,6.4,6.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=9.4,11.8,20.0,20.2,1.4,2.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=9.4,9.6,14.2,20.0,1.4,2.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=9.4,11.4,14.0,14.2,1.4,2.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=9.4,11.8,20.0,20.2,4.8,6.2, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=9.4,9.6,14.2,20.0,4.8,6.2, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=9.4,11.4,14.0,14.2,4.8,6.2, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=11.8,12.2,20.0,20.2,1.2,2.6, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=14.2,14.6,20.0,20.2,0.0,1.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.8,14.2,20.0,20.2,0.2,1.6, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.4,13.8,20.0,20.2,0.4,1.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.0,13.4,20.0,20.2,0.6,2.0, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.6,13.0,20.0,20.2,0.8,2.2, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.2,12.6,20.0,20.2,1.0,2.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=11.4,11.8,14.0,14.2,1.6,3.0, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=11.8,12.2,14.0,14.2,1.8,3.2, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.2,12.6,14.0,14.2,2.0,3.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.6,13.0,14.0,14.2,2.2,3.6, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.0,13.4,14.0,14.2,2.4,3.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.4,13.8,14.0,14.2,2.6,4.0, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.8,14.2,14.0,14.2,2.8,4.2, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=14.2,14.6,14.0,14.2,3.0,4.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=14.2,14.6,20.0,20.2,3.4,4.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.8,14.2,20.0,20.2,3.6,5.0, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.4,13.8,20.0,20.2,3.8,5.2, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.0,13.4,20.0,20.2,4.0,5.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.6,13.0,20.0,20.2,4.2,5.6, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.2,12.6,20.0,20.2,4.4,5.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=11.8,12.2,20.0,20.2,4.6,6.0, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=11.4,11.8,14.0,14.2,5.0,6.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=11.8,12.2,14.0,14.2,5.2,6.6, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.2,12.6,14.0,14.2,5.4,6.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.6,13.0,14.0,14.2,5.6,7.0, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.0,13.4,14.0,14.2,5.8,7.2, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.4,13.8,14.0,14.2,6.0,7.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.8,14.2,14.0,14.2,6.2,7.6, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=14.2,14.6,14.0,14.2,6.4,7.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=14.2,14.6,17.0,17.2,0.0,1.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.8,14.2,17.0,17.2,0.2,1.6, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.4,13.8,17.0,17.2,0.4,1.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.0,13.4,17.0,17.2,0.6,2.0, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.6,13.0,17.0,17.2,0.8,3.6, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.2,12.6,17.0,17.2,1.0,3.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=11.8,12.2,17.0,17.2,1.2,3.2, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=11.4,11.8,17.0,17.2,1.4,3.0, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.0,13.4,17.0,17.2,2.4,3.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.4,13.8,17.0,17.2,2.6,5.2, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.8,14.2,17.0,17.2,2.8,5.0, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=14.2,14.6,17.0,17.2,3.0,4.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=11.4,11.8,17.0,17.2,4.8,6.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=11.8,12.2,17.0,17.2,4.6,6.6, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.2,12.6,17.0,17.2,4.4,6.8, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=12.6,13.0,17.0,17.2,4.2,7.0, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.0,13.4,17.0,17.2,4.0,5.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.0,13.4,17.0,17.2,5.8,7.2, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.4,13.8,17.0,17.2,6.0,7.4, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=13.8,14.2,17.0,17.2,6.2,7.6, SURF_ID='VSG'/ 
+&OBST ID='TR_Atrium_Bruestung', XB=14.2,14.6,17.0,17.2,6.4,7.8, SURF_ID='VSG'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,5.4,5.8,1.6,1.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,5.8,6.2,1.8,2.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,6.2,6.6,2.0,2.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,6.6,7.0,2.2,2.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,7.0,7.4,2.4,2.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,7.4,7.8,2.6,2.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,7.8,8.2,2.8,3.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,8.2,8.6,3.0,3.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,8.2,8.6,3.4,3.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,7.8,8.2,3.6,3.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,7.4,7.8,3.8,4.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,7.0,7.4,4.0,4.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,6.6,7.0,4.2,4.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,6.2,6.6,4.4,4.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,5.8,6.2,4.6,4.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,5.4,5.8,4.8,5.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,5.4,5.8,5.0,5.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,5.8,6.2,5.2,5.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,6.2,6.6,5.4,5.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,6.6,7.0,5.6,5.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,7.0,7.4,5.8,6.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,7.4,7.8,6.0,6.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,7.8,8.2,6.2,6.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,8.2,8.6,6.4,6.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,8.2,8.6,-0.4,-0.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,7.8,8.2,-0.6,-0.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=17.4,18.6,7.4,7.8,-0.8,-0.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,8.2,8.6,0.0,0.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,7.8,8.2,0.2,0.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,7.4,7.8,0.4,0.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,7.0,7.4,0.6,0.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,6.6,7.0,0.8,1.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,6.2,6.6,1.0,1.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,5.8,6.2,1.2,1.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Stufen', XB=19.0,20.2,5.4,5.8,1.4,1.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Absatz', XB=17.4,20.2,4.2,5.4,4.8,5.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_A_Absatz', XB=17.4,20.2,4.2,5.4,1.4,1.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,28.6,29.0,4.8,5.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,28.2,28.6,4.6,4.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,27.8,28.2,4.4,4.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,27.4,27.8,4.2,4.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,27.0,27.4,4.0,4.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,26.6,27.0,3.8,4.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,26.2,26.6,3.6,3.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,25.8,26.2,3.4,3.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,25.8,26.2,6.4,6.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,26.2,26.6,6.2,6.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,26.6,27.0,6.0,6.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,27.0,27.4,5.8,6.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,27.4,27.8,5.6,5.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,27.8,28.2,5.4,5.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,28.2,28.6,5.2,5.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,28.6,29.0,5.0,5.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,25.8,26.2,3.0,3.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,26.2,26.6,2.8,3.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,26.6,27.0,2.6,2.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,27.0,27.4,2.4,2.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,27.4,27.8,2.2,2.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,27.8,28.2,2.0,2.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,28.2,28.6,1.8,2.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,28.6,29.0,1.6,1.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,28.6,29.0,1.4,1.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,28.2,28.6,1.2,1.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,27.8,28.2,1.0,1.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,27.4,27.8,0.8,1.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,27.0,27.4,0.6,0.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,26.6,27.0,0.4,0.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,26.2,26.6,0.2,0.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=17.4,18.6,25.8,26.2,0.0,0.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,25.8,26.2,-0.4,-0.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,28.6,29.0,-1.8,-1.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,28.2,28.6,-1.6,-1.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,27.8,28.2,-1.4,-1.2, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,27.4,27.8,-1.2,-1.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,27.0,27.4,-1.0,-0.8, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,26.6,27.0,-0.8,-0.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Stufen', XB=19.0,20.2,26.2,26.6,-0.6,-0.4, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Absatz', XB=17.4,20.2,29.0,30.2,4.8,5.0, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='TR_B_Absatz', XB=17.4,20.2,29.0,30.2,1.4,1.6, COLOR='GRAY 40', SURF_ID='INERT'/ 
+&OBST ID='Glasdach_Traeger', XB=0.2,0.4,10.8,11.2,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=0.2,0.4,23.0,23.4,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=0.2,0.4,10.8,23.4,11.6,12.0, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=8.2,8.4,10.8,11.2,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=8.2,8.4,23.0,23.4,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=8.2,8.4,10.8,23.4,11.6,12.0, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=12.4,12.6,10.8,11.2,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=12.4,12.6,23.0,23.4,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=12.4,12.6,10.8,23.4,11.6,12.0, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=16.6,16.8,10.8,11.2,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=16.6,16.8,23.0,23.4,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=16.6,16.8,10.8,23.4,11.6,12.0, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=20.8,21.0,10.8,11.2,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=20.8,21.0,23.0,23.4,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=20.8,21.0,10.8,23.4,11.6,12.0, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=25.0,25.2,10.8,11.2,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=25.0,25.2,23.0,23.4,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=25.0,25.2,10.8,23.4,11.6,12.0, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=29.2,29.4,10.8,11.2,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=29.2,29.4,23.0,23.4,10.0,11.6, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach_Traeger', XB=29.2,29.4,10.8,23.4,11.6,12.0, SURF_ID='Stahltraeger'/ 
+&OBST ID='Glasdach', XB=0.0,29.6,10.6,10.8,10.0,12.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='Glasdach', XB=0.0,29.6,23.4,23.6,10.0,12.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='Glasdach', XB=29.4,29.6,10.8,23.4,10.0,12.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='Glasdach', XB=0.0,0.2,10.8,23.4,10.0,12.0, SURF_ID='Fassadenglas'/ 
+&OBST ID='Glasdach', XB=0.0,29.6,10.6,23.6,12.0,12.2, SURF_ID='Fassadenglas'/ 
+
+&HOLE ID='RWA_01', XB= 9.4,11.4,13.0,15.0,11.98,12.22, DEVC_ID='timer_false'/ 
+&HOLE ID='RWA_02', XB= 9.4,11.4,19.2,21.2,11.98,12.22, DEVC_ID='timer_false'/ 
+&HOLE ID='RWA_03', XB=22.0,24.0,13.0,15.0,11.98,12.22, DEVC_ID='timer_false'/ 
+&HOLE ID='RWA_04', XB=22.0,24.0,19.2,21.2,11.98,12.22, DEVC_ID='timer_false'/ 
+&HOLE ID='Zuluft_01', XB=27.38,27.62,11.4,13.8, 2.4, 2.8, DEVC_ID='timer_false'/ 0.96 qm
+&HOLE ID='Zuluft_02', XB=27.38,27.62,20.4,22.8, 2.4, 2.8, DEVC_ID='timer_false'/ 0.96 qm
+&HOLE ID='Zuluft_03', XB=27.38,27.62,14.4,15.6, 2.4, 2.8, DEVC_ID='timer_false'/ 0.48 qm
+&HOLE ID='Zuluft_04', XB=27.38,27.62,18.6,19.8, 2.4, 2.8, DEVC_ID='timer_false'/ 0.48 qm
+
+&DEVC XYZ = 0., 0., 0., ID='timer_false', SETPOINT=120., QUANTITY='TIME', INITIAL_STATE=F /
+&DEVC XYZ = 0., 0., 0., ID='timer_true', SETPOINT=120., QUANTITY='TIME', INITIAL_STATE=T /
+
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_z0200', PBZ=2.0/
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_z0200_cc', PBZ=2.0, CELL_CENTERED=.TRUE./
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_z0210_cc', PBZ=2.1, CELL_CENTERED=.TRUE./
+
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_z0540', PBZ=5.4/
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_z0540_cc', PBZ=5.4, CELL_CENTERED=.TRUE./
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_z0550_cc', PBZ=5.5, CELL_CENTERED=.TRUE./
+
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_z0880', PBZ=8.8/
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_z0880_cc', PBZ=8.8, CELL_CENTERED=.TRUE./
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_z0890_cc', PBZ=8.9, CELL_CENTERED=.TRUE./
+
+&SLCF QUANTITY='TEMPERATURE', ID='T_z0200', PBZ=2.0/
+&SLCF QUANTITY='TEMPERATURE', ID='T_z0540', PBZ=5.4/
+&SLCF QUANTITY='TEMPERATURE', ID='T_z0880', PBZ=8.8/
+
+&SLCF QUANTITY='VELOCITY', ID='vel_y1720', PBY=17.2, VECTOR=.TRUE./
+&SLCF QUANTITY='VELOCITY', ID='vel_x1100', PBX=11.0, VECTOR=.TRUE./
+&SLCF QUANTITY='VELOCITY', ID='vel_x2370', PBX=23.7, VECTOR=.TRUE./
+
+&SLCF QUANTITY='TEMPERATURE', ID='T_y1720', PBY=17.2/
+&SLCF QUANTITY='TEMPERATURE', ID='T_x1100', PBX=11.0/
+&SLCF QUANTITY='TEMPERATURE', ID='T_x2370', PBX=23.7/
+
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_y1720', PBY=17.2/
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_x1100', PBX=11.0/
+&SLCF QUANTITY='OPTICAL DENSITY', ID='OD_x2370', PBX=23.7/
+
+&SLCF QUANTITY='VOLUME FRACTION', SPEC_ID='OXYGEN', ID='vf_O2_y1720', PBY=17.2/
+&SLCF QUANTITY='VOLUME FRACTION', SPEC_ID='OXYGEN', ID='vf_O2_x1100', PBX=11.0/
+&SLCF QUANTITY='VOLUME FRACTION', SPEC_ID='OXYGEN', ID='vf_O2_x2370', PBX=23.7/
+
+&SLCF QUANTITY='VOLUME FRACTION', SPEC_ID='CARBON MONOXIDE', ID='vf_CO_y1720', PBY=17.2/
+&SLCF QUANTITY='VOLUME FRACTION', SPEC_ID='CARBON MONOXIDE', ID='vf_CO_x1100', PBX=11.0/
+&SLCF QUANTITY='VOLUME FRACTION', SPEC_ID='CARBON MONOXIDE', ID='vf_CO_x2370', PBX=23.7/
+
+&TAIL /
