@@ -1,0 +1,389 @@
+
+ Fire Dynamics Simulator
+
+ Current Date     : July 16, 2025  18:53:01
+ Revision         : FDS-6.10.1-0-g12efa16-release
+ Revision Date    : Wed Apr 2 17:38:58 2025 -0400
+ Compiler         : Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.7.1 Build 20221019_000000
+ Compilation Date : Apr 04, 2025  08:55:01
+
+ Number of MPI Processes:  1
+ Number of OpenMP Threads: 4
+
+ MPI version: 3.1
+ MPI library version: Open MPI v4.1.5, package: Open MPI mnv@excess.campus.nist.gov Distribution, ident: 4.1.5, repo rev: v4.1.5, Feb 23, 2023
+ Hypre library version: v2.32.0
+ Sundials library version: v6.7.0
+
+ Job TITLE        : 
+ Job ID string    : validate_5_vc
+
+
+ Grid Dimensions, Mesh     1
+
+   Cells in the X Direction             3
+   Cells in the Y Direction             3
+   Cells in the Z Direction             3
+   Number of Grid Cells                27
+
+
+ Physical Dimensions, Mesh     1
+
+   Length (m)                       1.000
+   Width  (m)                       1.000
+   Height (m)                       1.000
+
+ Miscellaneous Parameters
+
+   Total Number of Grid Cells          27
+   Maximum Cell Aspect Ratio        1.000
+   Initial Time Step (s)            0.532
+   CFL Velocity Norm                    2
+   Simulation Start Time (s)          0.0
+   Simulation End Time (s)            1.0
+   Background Pressure (Pa)     101325.00
+   Ambient Temperature (C)          20.00
+
+   3D Cartesian
+   VLES Calculation
+   Eddy Viscosity Model:  Deardorff (C_DEARDORFF = 0.10)
+   Surface INERT Eddy Viscosity Model:  WALE (C_WALE = 0.60)
+   Turbulent Prandtl Number:         0.50
+   Turbulent Schmidt Number:         0.50
+
+
+ Pressure solver information
+
+   Solver:                            FFT
+   Velocity tolerance (m/s):    1.667E-01
+   Press eqn res tol (1/s^2):   1.800E+02
+   Max pressure iterations:            10
+
+
+ Background Stratification
+
+      Z (m)     P_0 (Pa)    TMP_0 (C)
+   ------------------------------------
+        0.83    101315.20     20.00
+        0.50    101319.12     20.00
+        0.17    101323.04     20.00
+
+
+ Mass Fraction Transformation Matrix to Convert Species Mixtures (Columns) to Primitive Species (Rows)
+
+                         AIR       PVC       PRODUCTS
+   PVC                   0.000000  1.000000  0.000000
+   OXYGEN                0.232516  0.000000  0.000000
+   NITROGEN              0.767484  0.000000  0.507034
+   HYDROGEN CHLORIDE     0.000000  0.000000  0.197978
+   WATER VAPOR           0.000000  0.000000  0.097820
+   CARBON MONOXIDE       0.000000  0.000000  0.116399
+   CARBON DIOXIDE        0.000000  0.000000  0.000342
+   SOOT                  0.000000  0.000000  0.080427
+
+
+ Primitive Species Information
+
+   PVC
+   Gas Species
+   Molecular Weight (g/mol)                62.49822
+   Ambient Density (kg/m^3)                2.598
+   Assumed Enthalpy of Formation (J/kg) -7.791E+05
+
+   OXYGEN
+   Gas Species
+   Molecular Weight (g/mol)                31.99880
+   Ambient Density (kg/m^3)                1.330
+           Enthalpy of Formation (J/kg)  0.000E+00
+
+   NITROGEN
+   Gas Species
+   Molecular Weight (g/mol)                28.01340
+   Ambient Density (kg/m^3)                1.165
+           Enthalpy of Formation (J/kg)  0.000E+00
+
+   HYDROGEN CHLORIDE
+   Gas Species
+   Molecular Weight (g/mol)                36.46094
+   Ambient Density (kg/m^3)                1.516
+           Enthalpy of Formation (J/kg) -2.532E+06
+
+   WATER VAPOR
+   Gas Species
+   Molecular Weight (g/mol)                18.01528
+   Ambient Density (kg/m^3)                0.749
+           Enthalpy of Formation (J/kg) -1.342E+07
+
+   CARBON MONOXIDE
+   Gas Species
+   Molecular Weight (g/mol)                28.01010
+   Ambient Density (kg/m^3)                1.164
+           Enthalpy of Formation (J/kg) -3.946E+06
+
+   CARBON DIOXIDE
+   Gas Species
+   Molecular Weight (g/mol)                44.00950
+   Ambient Density (kg/m^3)                1.830
+           Enthalpy of Formation (J/kg) -8.941E+06
+
+   SOOT
+   Gas Species
+   Molecular Weight (g/mol)                12.01070
+   Ambient Density (kg/m^3)                0.499
+           Enthalpy of Formation (J/kg)  0.000E+00
+
+
+ Tracked (Lumped) Species Information
+
+   AIR
+   Molecular Weight (g/mol)            28.84885
+   Ambient Density (kg/m^3)            1.199
+   Initial Mass Fraction               1.000
+   Enthalpy of Formation (J/kg)      0.000E+00
+
+   Sub Species                    Mass Fraction     Mole Fraction
+   OXYGEN                         2.325163E-01      2.096275E-01
+   NITROGEN                       7.674837E-01      7.903725E-01
+ 
+     Viscosity (kg/m/s) Ambient,  293 K:  1.801E-05
+                                  500 K:  2.619E-05
+                                 1000 K:  4.129E-05
+                                 1500 K:  5.373E-05
+                                 2000 K:  6.475E-05
+   Therm. Cond. (W/m/K) Ambient,  293 K:  2.561E-02
+                                  500 K:  3.817E-02
+                                 1000 K:  6.674E-02
+                                 1500 K:  9.216E-02
+                                 2000 K:  1.147E-01
+        Enthalpy (J/kg) Ambient,  293 K: -5.057E+03
+                                  500 K:  2.062E+05
+                                 1000 K:  7.530E+05
+                                 1500 K:  1.347E+06
+                                 2000 K:  1.968E+06
+    Spec. Heat (J/kg/K) Ambient,  293 K:  1.011E+03
+                                  500 K:  1.036E+03
+                                 1000 K:  1.149E+03
+                                 1500 K:  1.220E+03
+                                 2000 K:  1.260E+03
+   Diff. Coeff. (m^2/s) Ambient,  293 K:  1.990E-05
+                                  500 K:  4.954E-05
+                                 1000 K:  1.577E-04
+                                 1500 K:  3.087E-04
+                                 2000 K:  4.971E-04
+     Gibbs Energy Amb. (kJ/mol),  293 K: -5.707E+01
+                                  500 K: -9.904E+01
+                                 1000 K: -2.100E+02
+                                 1500 K: -3.296E+02
+                                 2000 K: -4.551E+02
+
+   PVC
+   Molecular Weight (g/mol)            62.49822
+   Ambient Density (kg/m^3)            2.598
+   Initial Mass Fraction               0.000
+   Enthalpy of Formation (J/kg)     -7.791E+05
+
+   Sub Species                    Mass Fraction     Mole Fraction
+   PVC                            1.000000E+00      1.000000E+00
+ 
+     Viscosity (kg/m/s) Ambient,  293 K:  2.599E-05
+                                  500 K:  3.752E-05
+                                 1000 K:  5.897E-05
+                                 1500 K:  7.672E-05
+                                 2000 K:  9.246E-05
+   Therm. Cond. (W/m/K) Ambient,  293 K:  1.704E-02
+                                  500 K:  2.460E-02
+                                 1000 K:  3.868E-02
+                                 1500 K:  5.031E-02
+                                 2000 K:  6.064E-02
+        Enthalpy (J/kg) Ambient,  293 K: -7.815E+05
+                                  500 K: -6.851E+05
+                                 1000 K: -4.523E+05
+                                 1500 K: -2.195E+05
+                                 2000 K:  1.329E+04
+    Spec. Heat (J/kg/K) Ambient,  293 K:  4.656E+02
+                                  500 K:  4.656E+02
+                                 1000 K:  4.656E+02
+                                 1500 K:  4.656E+02
+                                 2000 K:  4.656E+02
+   Diff. Coeff. (m^2/s) Ambient,  293 K:  1.690E-05
+                                  500 K:  4.199E-05
+                                 1000 K:  1.335E-04
+                                 1500 K:  2.613E-04
+                                 2000 K:  4.207E-04
+
+   PRODUCTS
+   Molecular Weight (g/mol)            25.11359
+   Ambient Density (kg/m^3)            1.044
+   Initial Mass Fraction               0.000
+   Enthalpy of Formation (J/kg)     -2.277E+06
+
+   Sub Species                    Mass Fraction     Mole Fraction
+   NITROGEN                       5.070342E-01      4.545485E-01
+   HYDROGEN CHLORIDE              1.979776E-01      1.363631E-01
+   WATER VAPOR                    9.782035E-02      1.363631E-01
+   CARBON MONOXIDE                1.163989E-01      1.043621E-01
+   CARBON DIOXIDE                 3.417218E-04      1.950002E-04
+   SOOT                           8.042727E-02      1.681682E-01
+ 
+     Viscosity (kg/m/s) Ambient,  293 K:  1.536E-05
+                                  500 K:  2.312E-05
+                                 1000 K:  3.822E-05
+                                 1500 K:  5.072E-05
+                                 2000 K:  6.168E-05
+   Therm. Cond. (W/m/K) Ambient,  293 K:  2.138E-02
+                                  500 K:  3.423E-02
+                                 1000 K:  6.510E-02
+                                 1500 K:  9.389E-02
+                                 2000 K:  1.198E-01
+        Enthalpy (J/kg) Ambient,  293 K: -2.282E+06
+                                  500 K: -2.060E+06
+                                 1000 K: -1.463E+06
+                                 1500 K: -7.985E+05
+                                 2000 K: -9.106E+04
+    Spec. Heat (J/kg/K) Ambient,  293 K:  1.045E+03
+                                  500 K:  1.108E+03
+                                 1000 K:  1.271E+03
+                                 1500 K:  1.380E+03
+                                 2000 K:  1.445E+03
+   Diff. Coeff. (m^2/s) Ambient,  293 K:  2.057E-05
+                                  500 K:  5.225E-05
+                                 1000 K:  1.687E-04
+                                 1500 K:  3.317E-04
+                                 2000 K:  5.350E-04
+     Gibbs Energy Amb. (kJ/mol),  293 K: -1.065E+02
+                                  500 K: -1.446E+02
+                                 1000 K: -2.458E+02
+                                 1500 K: -3.554E+02
+                                 2000 K: -4.709E+02
+
+
+ Gas Phase Reaction Information
+
+   Solver Details:  
+
+      ODE Solver:  EXPLICIT EULER
+
+      Fuel                                           Heat of Combustion (kJ/kg)
+      PVC                                                             5929.7600
+
+      Primitive Species Stoich. Coeff.
+      Species ID                                                          Molar
+      PVC                                                             -1.000000
+      OXYGEN                                                          -0.884096
+      NITROGEN                                                         0.000001
+      HYDROGEN CHLORIDE                                                1.000000
+      WATER VAPOR                                                      1.000000
+      CARBON MONOXIDE                                                  0.765325
+      CARBON DIOXIDE                                                   0.001430
+      SOOT                                                             1.233238
+
+      Tracked (Lumped) Species Stoich. Coeff.
+      Species ID                                             Molar         Mass
+      AIR                                                -4.217463    -1.946759
+      PVC                                                -1.000000    -1.000000
+      PRODUCTS                                            7.333360     2.946756
+
+      Reaction Kinetics
+
+      Fast chemistry
+
+      Extinction Model:  EXTINCTION 1
+      Auto-Ignition Temperature (C):            -273.1
+      Critical Flame Temperature (C):           1427.0
+
+      Prescribed Radiative Fraction:             0.350
+
+
+ Material Information
+
+
+ Surface Conditions
+
+   0 INERT (DEFAULT)
+
+   1 OPEN
+     Passive Vent to Atmosphere
+
+   2 MIRROR
+     Symmetry Plane
+
+   3 INTERPOLATED
+
+   4 PERIODIC
+
+   5 HVAC
+
+   6 MASSLESS TRACER
+
+   7 DROPLET
+
+   8 MASSLESS TARGET
+
+   9 PERIODIC FLOW ONLY
+
+
+ Lagrangian Particle Classes
+
+
+ Cut-off Density and Temperature
+
+    Minimum Temperature:  -218.3 C
+    Maximum Temperature:  2726.8 C
+    Minimum Density:  1.199E-01 kg/m3
+    Maximum Density:  2.780E+01 kg/m3
+
+
+ Radiation Model Information
+
+   Number of control angles  104
+   Time step increment         3
+   Angle increment             5
+   Theta band N_phi   Solid angle
+     1:        4     0.120
+     2:       12     0.114
+     3:       16     0.127
+     4:       20     0.120
+     5:       20     0.120
+     6:       16     0.127
+     7:       12     0.114
+     8:        4     0.120
+   Using gray gas absorption.
+   Mean beam length  1.000E-01 m
+
+
+ Pressure Zone Information
+
+   1 Volume: 1.0000E+00 m3, Cells: 27, Mesh: 1, Indices: (3,3,3)
+ 
+ 
+
+ Run Time Diagnostics
+
+       Time Step        1   July 16, 2025  18:53:01
+       Step Size:  0.532E+00 s, Total Time:    0.53222 s
+       Pressure Iterations: 1
+       Maximum Velocity Error:  0.00E+00 on Mesh 1 at (0,0,0)
+       Maximum Pressure Error:  0.11E-07 on Mesh 1 at (3,2,2)
+       ---------------------------------------------------------------
+       Max CFL number:  0.27E-01 at (1,2,2)
+       Max divergence:  0.11E-05 at (1,1,2)
+       Min divergence: -0.10E-05 at (2,1,2)
+       Max VN number :  0.13E-01 at (3,2,3)
+ 
+       Time Step        2   July 16, 2025  18:53:01
+       Step Size:  0.468E+00 s, Total Time:    1.00000 s
+       Pressure Iterations: 1
+       Maximum Velocity Error:  0.00E+00 on Mesh 1 at (0,0,0)
+       Maximum Pressure Error:  0.11E-09 on Mesh 1 at (1,2,2)
+       ---------------------------------------------------------------
+       Max CFL number:  0.23E-01 at (1,2,2)
+       Max divergence:  0.11E-05 at (1,1,2)
+       Min divergence: -0.10E-05 at (2,1,2)
+       Max VN number :  0.12E-01 at (3,2,3)
+ 
+
+
+ Time Stepping Wall Clock Time (s):        0.015
+ Total Elapsed Wall Clock Time (s):        1.937
+
+STOP: FDS completed successfully (CHID: validate_5_vc)

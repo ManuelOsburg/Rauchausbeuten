@@ -17,6 +17,9 @@ case | fuel                 | Formula             | HEAT_OF_COMBUSTION | SOOT_YI
 2_wv | PS                   | C8.0H7.9O1.0N0.0    | 27000              | 0.164      | 0.06     | 0.0       |
 4_vc | PUR foam rgid (mean) | C6.2H7.1O2.3N1.1    | 7813               | 0.236      | 0.59     | 0.0472    |
 4_wv | PUR foam rgid (mean) | C6.2H7.1O2.3N1.1    | 16925              | 0.118      | 0.0295   | 0.023599  |
+5_vc | PVC                  | C2H3Cl              |  5929              | 0.237      | 0.343    | 0.0       |
+5_wv | PVC                  | C2H3Cl              | 10293              | 0.172      | 0.063    | 0.0       |
+
 ## FDS/BBR
 
 Brandszenarien zur Überprüfung des geänderten und erweiterten Konzeptes zur Quantifizierung der Ruß- und Schadstofffreisetzung bei Brandsimulationen für den *Leitfaden Ingenieurmethoden des Brandschutzes* des Referats 4 des Vereinigung zur Förderung des Deutschen Brandschutzes e.V. (vfdb). 
