@@ -27,3 +27,7 @@ Brandszenarien zur Überprüfung des geänderten und erweiterten Konzeptes zur Q
 Das Modell basiert auf dem Anwendungsbeispiel für Ingenieurmethoden des Brandschutzes eines Bürogebäudes mit Atrium im "*Brandschutzleitfaden für Gebäude des Bundes*":
 
 Zehfuß, Jochen; Siemon, Matthias: **Anwendungsbeispiel** *Anwendung von Ingenieurmethoden am Beispiel eines Bürogebäudes mit Atrium zum Nachweis der Personen- und Standsicherheit im Brandfall*. TU Braunschweig, Institut für Baustoffe, Massivbau und Brandschutz (iBMB), Januar 2015
+
+## Veröffentlichung
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15522181.svg)](https://doi.org/10.5281/zenodo.15522181)
